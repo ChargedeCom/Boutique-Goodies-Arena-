@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page avec Sections et Navigation</title>
+    <link rel="stylesheet" href="styles.css">    
+    <link rel="stylesheet" href="searchBar.css">
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="active"><a draggable="false" href="#section1" class="nav-link">Accueil</a></li>
+                <li><a draggable="false" href="#section2" class="nav-link">Résumé</a></li>
+                <li><a draggable="false" href="#section3" class="nav-link">Articles</a></li>
+                <li><a draggable="false" href="#section4" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="main" class="container">
+        <!-- Section 1 -->
+        <section id="section1" class="section section1">
+            <img src="images/logo.svg" class="logo1"/>
+            <div style="background-image: url(images/Arena_Page_1.svg);" class="image-background"></div>
+            
+            <!-- Contenu sous l'image -->
+            <div class="text-container-section1">
+                <h3 class="small-title">Arena Invest</h3>
+                <h1 class="large-title">Goodies &<br> Prospection</h1>
+                <button class="main-button disabled">Commandez maintenant</button>
+            </div>
+            <!-- Fin du contenu sous l'image -->
+            <img src="images/Flyer_Page_1.svg" class="flyer1-image">
+            <!-- barre de recherche -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Rechercher des articles..." />
+                <ul id="suggestions" class="suggestions-list"></ul>
+            </div>
+            <!-- Fin de la barre de recherche -->
+        </section>
+        <!-- Section 2 -->
+        <section id="section2" class="section section2">
+            <h2 class="section-title">Section 2</h2>
+            <p>Contenu de la section 2...</p>
+        </section>
+        <!-- Section 3 -->
+        <section id="section3" class="section section3">
+            <h2 class="section-title">Section 3</h2>
+            <p>Contenu de la section 3...</p>
+        </section>
+        <!-- Section 4 -->
+        <section id="section4" class="section section4">
+            <h2 class="section-title">Section 4</h2>
+            <p>Contenu de la section 4...</p>
+        </section>
+</div>
+    <script src="searchBar.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+/* Style pour la barre de recherche et le menu déroulant */
+.search-container {
+    position: absolute; /* Positionne la barre de recherche de manière absolue */
+    top: 20px; /* Distance du haut de la section */
+    right: 20px; /* Distance du bord droit de la section */
+    z-index: 1000; /* Assure que la barre de recherche est au-dessus des autres éléments */
+}
+
+#searchInput {
+    padding: 10px;
+    font-size: 16px;
+    width: 250px; /* Largeur de la barre de recherche */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.suggestions-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    position: absolute;
+    top: calc(100% + 2px); /* Positionne le menu déroulant juste en dessous de la barre de recherche */
+    left: 0;
+    width: 100%;
+    max-height: 200px; /* Hauteur maximale pour le menu déroulant */
+    overflow-y: auto; /* Ajoute une barre de défilement si nécessaire */
+    background-color: #fff;
+    z-index: 1000;
+    display: none; /* Cache le menu déroulant par défaut */
+}
+
+.suggestions-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.suggestions-list li:hover {
+    background-color: #f0f0f0; /* Couleur de fond au survol */
+}
+
+.suggestions-list li:last-child {
+    border-bottom: none;
+}
