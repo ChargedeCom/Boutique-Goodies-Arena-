@@ -1,30 +1,56 @@
+const Articles = [
+    {
+        title: "Flyer Arena",
+        image: "./images/ArticleflyerArena.svg",
+        page: "pages/article1.html"
+    },
+    {
+        title: "Carte de visite (personnalisées)",
+        image: "images/Exemplecartedevisite.svg",
+        page: "pages/article2.html"
+    },
+    {
+        title: "Panneaux à Vendre - Vendu",
+        image: "images/Exemplepanneauxàlouer.svg",
+        page: "pages/article3.html"
+    },
+    // Ajoutez d'autres articles ici
+];
+    
+
+const modal = document.getElementById('myModal');
+const searchInput = document.getElementById('searchInput');
+const suggestionsList = document.getElementById('suggestions');
+const modalIframe = document.getElementById('modalIframe');
+const closeButton = document.querySelector('.close-btn');
+
 document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
-    const suggestionsList = document.getElementById('suggestions');
-    const items = [
-        "Article 1: Introduction à JavaScript",
-        "Article 2: Les bases du HTML",
-        "Article 3: CSS pour les débutants",
-        "Article 4: Comprendre les API Web",
-        "Article 5: Frameworks JavaScript populaires"
-    ];
+
 
     function updateSuggestions(query) {
         suggestionsList.innerHTML = ''; // Réinitialise la liste des suggestions
         let filteredItems;
 
         if (query) {
-            filteredItems = items.filter(item => item.toLowerCase().includes(query.toLowerCase()));
+            filteredItems = Articles.filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
         } else {
-            filteredItems = items; // Affiche tous les articles si la recherche est vide
+            filteredItems = Articles; // Affiche tous les articles si la recherche est vide
         }
 
         filteredItems.forEach(item => {
             const li = document.createElement('li');
-            li.textContent = item;
+            const img = document.createElement('img');
+            img.src = item.image;
+            img.className = 'suggestion-image';
+            const span = document.createElement('span');
+            span.textContent = item.title;
+            li.appendChild(img);
+            li.appendChild(span);
             li.addEventListener('click', () => {
-                searchInput.value = item;
-                suggestionsList.style.display = 'none'; // Masquer la liste après la sélection
+                modalIframe.src = item.page; // Charge la page dans l'iframe
+                modal.style.display = 'flex'; // Affiche la modale
+                searchInput.style.display = 'none'; // Masquer la search bar
+                suggestionsList.style.display = 'none'; // Masquer la liste des suggestions
             });
             suggestionsList.appendChild(li);
         });
@@ -48,5 +74,64 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!searchInput.contains(event.target) && !suggestionsList.contains(event.target)) {
             suggestionsList.style.display = 'none'; // Masquer la liste si l'utilisateur clique ailleurs
         }
+    });
+
+    // Fonction pour fermer la modale
+    function closeModal() {
+        modal.style.display = 'none'; // Masquer la modale
+        searchInput.style.display = 'block'; // Réafficher la search bar
+        modalIframe.src = ''; // Réinitialise l'URL de l'iframe pour stopper le chargement de la page
+    }
+
+    closeButton.addEventListener('click', closeModal);
+
+    // Fermer la modale avec la touche Échap
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    });
+
+    // Fermer la modale en cliquant sur le fond
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const bubblesContainer = document.getElementById('bubblesContainer');
+
+    Articles.forEach(item => {
+        const bubbleWrapper = document.createElement('div');
+        bubbleWrapper.className = 'bubble-wrapper';
+
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.title;
+        
+        const title = document.createElement('div');
+        title.className = 'bubble-title';
+        title.textContent = item.title;
+        
+        bubble.appendChild(img);
+        bubbleWrapper.appendChild(bubble);
+        bubbleWrapper.appendChild(title);
+        
+        // Ajouter un gestionnaire d'événements pour ouvrir la modale
+        bubbleWrapper.addEventListener('click', () => {
+            modalIframe.src = item.page; // Charge la page dans l'iframe
+            modal.style.display = 'flex'; // Affiche la modale
+            searchInput.style.display = 'none'; // Masquer la search bar
+            suggestionsList.style.display = 'none'; // Masquer la liste des suggestions
+        });
+
+        bubblesContainer.appendChild(bubbleWrapper);
     });
 });

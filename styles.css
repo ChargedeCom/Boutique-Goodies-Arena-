@@ -18,7 +18,7 @@ header {
     z-index: 1000;
     padding: 10px 0;
     font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
+    font-size: 1.33em;
 }
 
 .logo1 {
@@ -27,7 +27,12 @@ header {
     left: 0;
     width: 15vw;
 }
-
+.logo2 {
+    position: absolute;
+    top: 10vh;
+    left: 42.5vw;
+    width: 15vw;
+}
 nav ul {
     list-style: none;
     margin: 0;
@@ -76,7 +81,6 @@ section {
     height: 100vh;
     padding: 20px;
     margin: 0;
-    border-bottom: 1px solid #ccc;
     position: relative;
 }
 
@@ -105,7 +109,7 @@ h1 {
 
 .small-title {
     font-family: 'Cardo', serif;
-    font-size: 32.6px;
+    font-size: 2.5em;
     margin: 0;
     /* Offset pour le petit titre */
     position: relative;
@@ -119,7 +123,7 @@ img {
 }
 .large-title {
     font-weight: 1000;
-    font-size: 83.1px;
+    font-size: 5em;
     margin: 0 0 20px 0;
     /* Ajustement pour le gros titre */
 }
@@ -133,7 +137,7 @@ img {
 }
 .main-button {
     padding: 10px 20px;
-    font-size: 24px;
+    font-size: 1.5em;
     color: #fff;
     background-color: #107D9C;
     border: none;
@@ -159,15 +163,6 @@ img {
     right: 20px;
     z-index: 1000;
 }
-
-#searchInput {
-    padding: 10px;
-    font-size: 16px;
-    width: 250px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
 .suggestions-list {
     list-style: none;
     padding: 0;
@@ -198,13 +193,63 @@ img {
 .suggestions-list li:last-child {
     border-bottom: none;
 }
-
+.background-container-page2{
+    position: absolute;
+    width: 100vw;
+    height: 70vh;
+    top: 20vh;
+    overflow: hidden;
+    z-index: -1;
+}
+.background2-1, .background2-2 {
+    position: absolute;
+    top: 0;
+    width: 50vw;
+    height: 100%;
+    background-size: auto 100%; /* Garder les proportions et ajuster la hauteur */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('images/Arena_Page_2.svg');
+}
+.background2-1 {
+    left: 0;
+}
+.background2-2 {
+    right: 0;
+    transform: scaleX(-1);
+}
 .section2 {
-    background-color: #4caf50;
+    background-color: #fff;
+    z-index: 1;
+}
+.container-text-page2 {
+    position: absolute;
+    top: 40vh;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Open Sans", sans-serif;
+    font-size: em;
+    color: #fff;
+    margin: 0; /* Réinitialise les marges */
+    padding: 0; /* Réinitialise les paddings */
+}
+.Page2-LastText{
+    position: relative;
+    font-family: "Open Sans", sans-serif;
+    color: #fff;
+    margin-top: 25vh;
+    font-size: 2em;
+}
+.container-text-page2 > div {
+    font-size: 2em;
+    line-height: 1.2; /* Ajustez la hauteur de ligne pour réduire l'espace entre les lignes */
+    margin-bottom: 10px; /* Espacement entre les divs */
 }
 
 .section3 {
-    background-color: #2196f3;
 }
 
 .section4 {
@@ -220,4 +265,46 @@ img {
     nav ul li {
         margin: 10px 0;
     }
+}
+/* bubble */
+.bubbles-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espacement entre les bulles */
+    padding: 20px;
+}
+
+.bubble-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Centre le texte sous la bulle */
+    width: 150px; /* Largeur de chaque bulle */
+}
+
+.bubble {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px; /* Largeur de la bulle */
+    height: 100px; /* Hauteur de la bulle */
+    border-radius: 50%;
+    background-color: #107D9C; /* Couleur de fond des bulles */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    overflow: hidden; /* Cache les débordements */
+}
+
+.bubble img {
+    max-width: 80%; /* Largeur maximale de l'image */
+    max-height: 80%; /* Hauteur maximale de l'image */
+}
+
+.bubble-title {
+    margin-top: 10px; /* Espacement entre la bulle et le titre */
+    font-size: 0.9em;
+    font-family: 'Open Sans', sans-serif;
+    color: #333; /* Couleur du texte pour le titre */
+    word-wrap: break-word; /* Retourne le texte à la ligne si nécessaire */
 }

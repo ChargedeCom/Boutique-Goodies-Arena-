@@ -1,0 +1,175 @@
+/* Ajouter cette ligne pour inclure les polices Cardo et Open Sans depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    position: relative; /* Nécessaire pour que le positionnement absolu fonctionne */
+}
+
+.background {
+    background-image: url('../images/Angle_Couleur.svg'); /* Remplacez 'votre-image.svg' par le chemin de votre image SVG */
+    background-size: cover; /* Assure que l'image couvre toute la surface */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+    background-position: center center; /* Centre l'image */
+    height: 100%; /* Fait en sorte que le conteneur prenne toute la hauteur */
+    display: flex;
+}
+
+.image-container {
+    top: -10vh;
+    left: -5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%; /* Prend la moitié gauche de l'écran */
+    position: relative; /* Pour le positionnement des images */
+}
+
+.image {
+    position: absolute;
+}
+
+.image1 {
+    width: 100vh;
+    height: 100vh;
+    z-index: 1;
+}
+
+.image2 {
+    width: 75vh;
+    height: 75vh;
+    z-index: 2;
+    transform: translate(35%, 35%);
+}
+.image-bottom{
+    position: absolute;
+    bottom: 0vh;
+    width: 75vh;
+    height: 75vh;
+    z-index: 2; 
+}
+.content {
+    right: 5vw;
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre les éléments horizontalement */
+    background: transparent; /* Enlève le fond blanc et laisse visible le fond SVG */
+    width: 50%; /* Prend la moitié droite de l'écran */
+    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+    gap: 20px; /* Espace entre les éléments enfants */
+    position: relative; /* Assure que les éléments sont correctement positionnés */
+    top: 10vh; /* Réinitialise la position verticale par rapport à la partie gauche */
+}
+
+h1 {
+    margin: 0; /* Enlève la marge autour du titre */
+    font-size: 2.5em; /* Ajustez la taille si nécessaire */
+    font-family: 'Cardo', serif; /* Utilisation de la police Cardo */
+    font-style: italic; /* Texte en italique */
+    font-weight: normal;
+    color: #107D9C; /* Couleur bleue spécifiée */
+    text-align: left; /* Aligne le titre à gauche */
+    width: 100%; /* Assure que le titre prend toute la largeur du conteneur */
+}
+
+.Description {
+    margin: 0; /* Enlève la marge autour de la description */
+    font-family: 'Open Sans', sans-serif; /* Utilisation de la police Open Sans */
+    font-style: italic; /* Texte en italique */
+    font-size: 1em;
+    text-align: left; /* Aligne le texte de la description à gauche */
+    width: 100%; /* Assure que la description prend toute la largeur du conteneur */
+    margin-bottom: 5vh;
+}
+
+p {
+    margin: 0; /* Réduit la marge inférieure pour rapprocher le texte de la description du tableau */
+    padding: 0; /* Enlève le padding pour ajuster la position */
+    font-size: 1.2em;
+    font-family: 'Open Sans', sans-serif; /* Utilisation de la police Open Sans */
+    text-align: left; /* Aligne le texte à gauche */
+    width: 100%; /* Assure que le texte prend toute la largeur du conteneur */
+}
+
+.text-table {
+    display: grid;
+    grid-template-columns: auto auto; /* Ajuste les colonnes automatiquement en fonction du contenu */
+    grid-template-rows: auto auto auto; /* Ajuste les lignes automatiquement en fonction du contenu */
+    gap: 0; /* Enlève les espaces entre les cellules */
+    width: 40vw; /* Ajuste la largeur totale du tableau en fonction de son contenu */
+    max-width: 100%; /* Empêche le tableau de dépasser la largeur de son conteneur */
+    margin: 0 auto 5vh; /* Centre le tableau horizontalement */
+}
+
+.cell {
+    display: flex;
+    align-items: center; /* Centre le texte verticalement */
+    justify-content: center; /* Centre le texte horizontalement */
+    padding: 10px; /* Ajoute un peu d'espace intérieur pour le texte */
+    box-sizing: border-box; /* Inclut le padding dans la largeur et hauteur totales */
+    color: white; /* Texte blanc par défaut */
+    overflow: hidden; /* Cache le texte qui dépasse de la cellule */
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+}
+
+.white {
+    background-color: white;
+    color: black; /* Texte noir pour les cellules blanches */
+}
+
+.dark-blue {
+    background-color: #107D9C;
+}
+
+.light-blue {
+    background-color: rgba(16, 125, 156, 0.8); /* Couleur avec 80% de transparence */
+}
+
+/* Ajoutez cette règle pour colorer la cellule du milieu à droite en blanc */
+.text-table .cell:nth-child(4) {
+    background-color: white; /* Assure que la cellule du milieu à droite est blanche */
+    color: black; /* Texte noir pour la cellule blanche */
+}
+
+.blue-button {
+    width: 20vw; /* Largeur des boutons en fonction de la largeur de la fenêtre */
+    background-color: #107D9C; /* Couleur bleue pour les boutons */
+    color: white; /* Texte blanc pour les boutons */
+    border: none; /* Enlève les bordures par défaut des boutons */
+    border-radius: 20px; /* Bordures arrondies pour les boutons */
+    padding: 10px 20px; /* Ajoute du padding autour du texte du bouton */
+    font-size: 1.2em; /* Ajuste la taille du texte du bouton */
+    cursor: default; /* Change le curseur pour indiquer que le bouton n'est pas cliquable */
+    margin: 10px 0; /* Ajoute de l'espace au-dessus et en-dessous des boutons */
+    pointer-events: none; /* Désactive les clics sur le bouton */
+    text-align: center; /* Centre le texte dans le bouton */
+}
+
+.blue-button:hover {
+    background-color: #107D9C; /* Maintient la même couleur lors du survol */
+}
+
+.additional-text {
+    text-align: center; 
+    margin: 20px 0; /* Ajoute de l'espace au-dessus et en-dessous du texte supplémentaire */
+    font-size: 1.1em;
+    font-family: 'Open Sans', sans-serif; /* Utilisation de la police Open Sans */
+}
+.image2-rounded {
+    width: 40vh;
+    height: 40vh;
+    z-index: 2;
+    transform: translate(35%, 80%);
+    z-index: 2;
+    border-radius: 50%; /* Assure que l'image est circulaire */
+    object-fit: cover; /* Ajuste le contenu de l'image pour couvrir le conteneur sans déformation */
+}
+.rounded{
+    border-radius: 50%; /* Rend l'image complètement arrondie (circulaire) */
+}   
