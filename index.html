@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page avec Sections et Navigation</title>
     <link rel="stylesheet" href="styles.css">    
+    <link rel="stylesheet" href="panier.css">    
     <link rel="stylesheet" href="modal.css">    
     <link rel="stylesheet" href="searchBar.css">
+</head>
 <body>
     <header>
         <nav>
@@ -15,37 +17,59 @@
                 <li><a draggable="false" href="#section2" class="nav-link">Résumé</a></li>
                 <li><a draggable="false" href="#section3" class="nav-link">Articles</a></li>
                 <li><a draggable="false" href="#section4" class="nav-link">Contact</a></li>
+                <li><a draggable="false" href="" class="nav-link" id="showCartButton">Panier</a></li>
             </ul>
         </nav>
     </header>
+    <!-- Loading screen de la page -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <img src="images/spinner.gif" alt="Loading..." class="spinner">
+            <p class="loading-text">Chargement... <span id="loadingPercentage">0%</span></p>
+        </div>
+    </div>
+    <!-- Loading screen des articles -->
     <div id="main" class="container">
-        <!-- Modal  -->
+        <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+            <!-- Spinner de chargement au-dessus du flou -->
+            <div class="spinner-container">
+                <img src="images/spinner.gif" alt="Loading..." class="spinner">
+            </div>
+        </div>
+        <!-- Modal pour le panier -->
+        <div id="cartModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn cartClose">&times;</span> <!-- Assurez-vous que la classe est la même que pour la modale des articles -->
+                <h2>Votre Panier</h2>
+                <div id="panierItems"></div>
+                <div id="totalPrice"></div>
+            </div>
+        </div>
+        <!-- Modale -->
         <div id="myModal" class="modal">
             <div class="modal-content">
-                <span class="close-btn">&times;</span>
+                <span class="close-btn articleClose">&times;</span>
                 <iframe id="modalIframe" src="" frameborder="0"></iframe>
             </div>
         </div>
+
+
         <!-- Section 1 -->
         <section id="section1" class="section section1">
             <img src="images/logo.svg" class="logo1"/>
             <div style="background-image: url(images/Arena_Page_1.svg);" class="image-background"></div>
-            
-            <!-- Contenu sous l'image -->
             <div class="text-container-section1">
                 <h3 class="small-title">Arena Invest</h3>
                 <h1 class="large-title">Goodies &<br> Prospection</h1>
                 <button class="main-button disabled">Commandez maintenant</button>
             </div>
-            <!-- Fin du contenu sous l'image -->
             <img src="images/Flyer_Page_1.svg" class="flyer1-image">
-            <!-- barre de recherche -->
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Rechercher des articles..." />
                 <ul id="suggestions" class="suggestions-list"></ul>
             </div>
-            <!-- Fin de la barre de recherche -->
         </section>
+        
         <!-- Section 2 -->
         <section id="section2" class="section section2">
             <div class="background-container-page2">
@@ -54,33 +78,28 @@
             </div>
             <img src="images/logo.svg" class="logo2"/>
             <div class="container-text-page2">
-                <div>
-                    Bienvenue sur la page dédiée aux collaborateurs de l'équipe d'Arena Invest. 
-                </div>
-                <div>
-                    Vous y trouverez une sélection de goodies et d'objets de prospection portant l'intitulé de notre marque.                </div>
-                <div>
-                    Ces articles ont été spécialement conçus pour renforcer notre image et soutenir vos efforts de prospection. 
-                </div>
+                <div>Bienvenue sur la page dédiée aux collaborateurs de l'équipe d'Arena Invest.</div>
+                <div>Vous y trouverez une sélection de goodies et d'objets de prospection portant l'intitulé de notre marque.</div>
+                <div>Ces articles ont été spécialement conçus pour renforcer notre image et soutenir vos efforts de prospection.</div>
             </div>
-            <div class="Page2-LastText">
-                Explorez notre collection et n'hésitez pas à les utiliser pour promouvoir notre cabinet avec fierté.
-            </div>
+            <div class="Page2-LastText">Explorez notre collection et n'hésitez pas à les utiliser pour promouvoir notre cabinet avec fierté.</div>
         </section>
-       <!-- Section 3 -->
+        
+        <!-- Section 3 -->
         <section id="section3" class="section section3">
             <div id="bubblesContainer" class="bubbles-container">
                 <!-- Les bulles seront ajoutées ici dynamiquement -->
             </div>
         </section>
-
+        
         <!-- Section 4 -->
         <section id="section4" class="section section4">
             <h2 class="section-title">Section 4</h2>
             <p>Contenu de la section 4...</p>
         </section>
-</div>
-    <script src="searchBar.js"></script>
+    </div>
     <script src="script.js"></script>
+    <script src="shopping.js"></script>
+    <script src="panier.js"></script>
 </body>
 </html>

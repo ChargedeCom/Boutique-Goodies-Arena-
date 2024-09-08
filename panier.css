@@ -1,0 +1,13 @@
+#panierItems {
+    margin-bottom: 20px;
+}
+
+#panierItems div {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#totalPrice {
+    font-size: 1.5em;
+    font-weight: bold;
+}

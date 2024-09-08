@@ -1,4 +1,46 @@
-/* Styles généraux */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f1f1f1; /* Couleur de fond, ajustable */
+    z-index: 9999; /* Place-le au-dessus de tout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-out; /* Effet de disparition en douceur */
+}
+
+/* Contenu de chargement centré */
+.loading-content {
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 80px; /* Taille du spinner, ajustable */
+    height: 80px;
+    animation: spin 2s linear infinite; /* Animation de rotation du spinner */
+}
+
+/* Texte sous le spinner */
+.loading-text {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Animation de rotation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Masquer l'écran de chargement après la transition */
+.loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none; /* Désactiver les clics une fois caché */
+}
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -193,6 +235,31 @@ img {
 .suggestions-list li:last-child {
     border-bottom: none;
 }
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Couleur grise semi-transparente */
+    backdrop-filter: blur(8px); /* Applique le flou */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* S'assure qu'il soit au-dessus de l'iframe */
+}
+
+/* Style pour le spinner */
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 50px; /* Ajustez la taille du spinner */
+    height: 50px;
+}
 .background-container-page2{
     position: absolute;
     width: 100vw;
@@ -219,6 +286,8 @@ img {
     transform: scaleX(-1);
 }
 .section2 {
+    display: flex;
+    flex-direction: columns;
     background-color: #fff;
     z-index: 1;
 }
@@ -271,7 +340,7 @@ img {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px; /* Espacement entre les bulles */
+    gap: 5vw;
     padding: 20px;
 }
 
@@ -287,8 +356,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px; /* Largeur de la bulle */
-    height: 100px; /* Hauteur de la bulle */
+    width: 10vw; /* Largeur de la bulle */
+    height: 10vw; /* Hauteur de la bulle */
     border-radius: 50%;
     background-color: #107D9C; /* Couleur de fond des bulles */
     cursor: pointer;
@@ -297,8 +366,8 @@ img {
 }
 
 .bubble img {
-    max-width: 80%; /* Largeur maximale de l'image */
-    max-height: 80%; /* Hauteur maximale de l'image */
+    max-width: 100%; /* Largeur maximale de l'image */
+    max-height: 100%; /* Hauteur maximale de l'image */
 }
 
 .bubble-title {

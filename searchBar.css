@@ -3,7 +3,7 @@
     position: absolute; /* Positionne la barre de recherche de manière absolue */
     top: 20px; /* Distance du haut de la section */
     right: 20px; /* Distance du bord droit de la section */
-    z-index: 1000; /* Assure que la barre de recherche est au-dessus des autres éléments */
+    z-index: 100; /* Assure que la barre de recherche est au-dessus des autres éléments */
 }
 
 #searchInput {
