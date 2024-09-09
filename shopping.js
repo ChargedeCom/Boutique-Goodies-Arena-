@@ -32,10 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fonction pour fermer les modales
     function closeModal() {
-        if (modal) modal.style.display = 'none'; // Masquer la modale des articles
-        searchInput.style.display = 'block'; // Réafficher la barre de recherche
-        modalIframe.src = ''; // Réinitialiser l'URL de l'iframe pour stopper le chargement de la page
+        modal.style.display = 'none';  // Cache l'affichage
     }
+    
 
     // Gestionnaires d'événements
     if (articleCloseButton) {
@@ -83,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
             li.addEventListener('click', () => {
                 modalIframe.src = item.page; // Charge la page dans l'iframe
                 modal.style.display = 'flex'; // Affiche la modale
-                searchInput.style.display = 'none'; // Masquer la search bar
                 suggestionsList.style.display = 'none'; // Masquer la liste des suggestions
             });
             suggestionsList.appendChild(li);
@@ -148,7 +146,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Masquer le flou et le spinner une fois la page chargée
             modalIframe.addEventListener('load', () => {
                 modal.style.display = 'flex'; // Affiche la modale
-                searchInput.style.display = 'none'; // Masquer la search bar
                 suggestionsList.style.display = 'none'; // Masquer la liste des suggestions
                 loadingOverlay.style.display = 'none'; // Masquer l'overlay après le chargement
             });
