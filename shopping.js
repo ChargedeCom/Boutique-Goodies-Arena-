@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fonction pour fermer les modales
     function closeModal() {
         if (modal) modal.style.display = 'none'; // Masquer la modale des articles
+        searchInput.style.display = 'block'; // Réafficher la barre de recherche
+        modalIframe.src = ''; // Réinitialiser l'URL de l'iframe pour stopper le chargement de la page
     }
 
     // Gestionnaires d'événements
@@ -46,8 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    myModal.addEventListener('click', function(event) {
-        closeModal();
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
     });
 
     document.querySelectorAll('.bubble-wrapper').forEach(wrapper => {
@@ -55,8 +59,58 @@ document.addEventListener('DOMContentLoaded', function() {
             if (modal) modal.style.display = 'flex'; // Afficher la modale des articles
         });
     });
-});
+    
+    // Fonction pour mettre à jour les suggestions de recherche
+    function updateSuggestions(query) {
+        suggestionsList.innerHTML = ''; // Réinitialiser la liste des suggestions
+        let filteredItems;
 
+        if (query) {
+            filteredItems = Articles.filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
+        } else {
+            filteredItems = Articles; // Affiche tous les articles si la recherche est vide
+        }
+
+        filteredItems.forEach(item => {
+            const li = document.createElement('li');
+            const img = document.createElement('img');
+            img.src = item.image;
+            img.className = 'suggestion-image';
+            const span = document.createElement('span');
+            span.textContent = item.title;
+            li.appendChild(img);
+            li.appendChild(span);
+            li.addEventListener('click', () => {
+                modalIframe.src = item.page; // Charge la page dans l'iframe
+                modal.style.display = 'flex'; // Affiche la modale
+                searchInput.style.display = 'none'; // Masquer la search bar
+                suggestionsList.style.display = 'none'; // Masquer la liste des suggestions
+            });
+            suggestionsList.appendChild(li);
+        });
+
+        suggestionsList.style.display = filteredItems.length ? 'block' : 'none'; // Affiche la liste si des résultats sont trouvés
+    }
+
+    searchInput.addEventListener('input', function() {
+        const query = searchInput.value;
+        updateSuggestions(query);
+    });
+
+    // Afficher les suggestions lorsque le champ de recherche reçoit le focus
+    searchInput.addEventListener('focus', function() {
+        const query = searchInput.value;
+        updateSuggestions(query); // Met à jour les suggestions même si le champ est vide
+        suggestionsList.style.display = 'block'; // Affiche la liste des suggestions
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!searchInput.contains(event.target) && !suggestionsList.contains(event.target)) {
+            suggestionsList.style.display = 'none'; // Masquer la liste si l'utilisateur clique ailleurs
+        }
+    });
+
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     const bubblesContainer = document.getElementById('bubblesContainer');
@@ -82,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Ajouter un gestionnaire d'événements pour ouvrir la modale
         bubbleWrapper.addEventListener('click', () => {
-            // Affiche la couche de flou et le spinner
             const loadingOverlay = document.getElementById('loadingOverlay');
             loadingOverlay.style.display = 'flex'; // Affiche le flou et le spinner
         
@@ -91,10 +144,11 @@ document.addEventListener('DOMContentLoaded', function() {
             modalIframe.onload = () => {
                 modalIframe.contentWindow.postMessage({ action: 'loadArticle', article: item }, '*');
             };
+
             // Masquer le flou et le spinner une fois la page chargée
             modalIframe.addEventListener('load', () => {
                 modal.style.display = 'flex'; // Affiche la modale
-                searchInput.style.display = 'none'; // Masquer la barre de recherche
+                searchInput.style.display = 'none'; // Masquer la search bar
                 suggestionsList.style.display = 'none'; // Masquer la liste des suggestions
                 loadingOverlay.style.display = 'none'; // Masquer l'overlay après le chargement
             });
